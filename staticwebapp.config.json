@@ -1,1 +1,43 @@
-{"$schema":"https://json.schemastore.org/staticwebapp.config.json","routes":[{"route":"/login","redirect":"/.auth/login/aad"},{"route":"/logout","redirect":"/.auth/logout"},{"route":"/.auth/login/aad/callback","redirect":"/"},{"route":"/api/*","methods":["GET","POST","PUT","DELETE"],"allowedRoles":["authenticated"]},{"route":"/*","allowedRoles":["authenticated"]}],"responseOverrides":{"401":{"redirect":"/login","statusCode":302}}}
+{
+    "$schema": "https://json.schemastore.org/staticwebapp.config.json" ,
+    "auth": {
+      "identityProviders": {
+        "azureActiveDirectory": {
+          "registration": {
+            "openIdIssuer": "https://login.microsoftonline.com/cc423cef-aa40-4433-bce1-d2ff9176c0ca/v2.0",
+            "clientIdSettingName": "FRONTEND_AZURE_CLIENT_ID",
+            "clientSecretSettingName": "FRONTEND_AZURE_CLIENT_SECRET"
+          }
+        }
+      }
+    },
+    "routes": [
+      {
+        "route": "/login",
+        "redirect": "/.auth/login/aad"
+      },
+      {
+        "route": "/logout",
+        "redirect": "/.auth/logout"
+      },
+      {
+        "route": "/.auth/login/aad/callback",
+        "redirect": "/"
+      },
+      {
+        "route": "/api/*",
+        "methods": ["GET", "POST", "PUT", "DELETE"],
+        "allowedRoles": ["authenticated"]
+      },
+      {
+        "route": "/*",
+        "allowedRoles": ["authenticated"]
+      }
+    ],
+    "responseOverrides": {
+      "401": {
+        "redirect": "/login",
+        "statusCode": 302
+      }
+    }
+  }
