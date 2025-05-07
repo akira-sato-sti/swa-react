@@ -26,6 +26,7 @@ namespace Company.Function
                 var decoded = Convert.FromBase64String(data);
                 var json = Encoding.UTF8.GetString(decoded);
                 _logger.LogInformation("Client principal JSON: {Json}", json);
+                return new OkObjectResult(json);
                 //principal = JsonSerializer.Deserialize<ClientPrincipal>(json, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
             }
 
